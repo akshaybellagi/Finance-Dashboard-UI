@@ -1,0 +1,4 @@
+@import "tailwindcss";
+
+/* Remove the conflicting CSS custom properties and body styles */
+/* Let Tailwind handle all the styling */
