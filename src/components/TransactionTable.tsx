@@ -117,8 +117,12 @@ export default function TransactionTable() {
               <input
                 type="number"
                 step="0.01"
-                value={formData.amount}
-                onChange={(e) => setFormData({ ...formData, amount: parseFloat(e.target.value) })}
+                value={formData.amount || ''}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  const numValue = value === '' ? 0 : parseFloat(value);
+                  setFormData({ ...formData, amount: isNaN(numValue) ? 0 : numValue });
+                }}
                 className="w-full border border-gray-300 rounded-md px-3 py-2 bg-white text-gray-900"
                 required
               />
