@@ -1,94 +1,120 @@
 # Finance Dashboard UI
 
-A modern, responsive personal finance tracking dashboard built with Next.js, React, Tailwind CSS, and Recharts. This frontend-only application simulates a comprehensive finance management interface with role-based access control and dynamic data visualization.
+A modern, responsive personal finance tracking dashboard built with Next.js 16, React 18, TypeScript, and Tailwind CSS. This comprehensive application features a complete dark/light mode implementation, role-based access control, interactive data visualization, and persistent data management.
 
-## 🚀 Features
+## ✨ Key Features
 
-### Dashboard Overview
-- **Summary Cards**: Real-time calculation of total balance, income, and expenses from transaction data
+### 🌙 Dark/Light Mode Toggle
+- **Seamless Theme Switching**: Toggle between light and dark themes with a single click
+- **System Preference Detection**: Automatically detects and applies your OS theme preference
+- **Persistent Themes**: Your theme choice is saved and restored across browser sessions
+- **Comprehensive Styling**: All components fully support both light and dark modes
+- **Smooth Transitions**: Elegant animations when switching between themes
+- **Hydration-Safe**: No flash of incorrect theme on page load
+
+### 📊 Dashboard Overview
+- **Real-time Summary Cards**: Dynamic calculation of total balance, income, expenses, and net savings
 - **Interactive Charts**: 
-  - Line chart showing balance trends over time
-  - Pie chart displaying spending distribution by category
+  - Line chart showing balance trends over time with hover interactions
+  - Pie chart displaying spending distribution by category with custom colors
+- **Financial Insights**: Smart analytics with highest spending category and savings rate
 - **Responsive Design**: Optimized for desktop, tablet, and mobile devices
 
-### Transaction Management
-- **Comprehensive Table**: View all transactions with date, amount, category, and type
-- **Advanced Filtering**: 
-  - Search by description or category
+### 💳 Transaction Management
+- **Comprehensive Table**: View all transactions with date, amount, category, type, and description
+- **Advanced Filtering & Search**: 
+  - Real-time search by description or category
   - Filter by category and transaction type
   - Sort by date or amount (ascending/descending)
-- **Real-time Updates**: Filters and sorting update dynamically
+  - Export to CSV functionality
+- **CRUD Operations**: Add, edit, and delete transactions (admin role)
+- **Form Validation**: Comprehensive validation for all transaction fields
 
-### Role-Based Access Control
+### 🔐 Role-Based Access Control
 - **Viewer Role**: Read-only access to view transactions and analytics
-- **Admin Role**: Full access including add, edit, and delete transactions
-- **Dynamic UI**: Interface adapts based on selected role
+- **Admin Role**: Full access including transaction management capabilities
+- **Dynamic UI**: Interface elements show/hide based on selected role
+- **Persistent Role Selection**: Role preference saved across sessions
 
-### Financial Insights
-- **Smart Analytics**:
-  - Highest spending category identification
-  - Monthly spending comparison with percentage changes
-  - Current month savings calculation and savings rate
-  - Average transaction amount and total transaction count
-- **Dynamic Updates**: All insights recalculate automatically when data changes
-
-### User Experience
-- **LocalStorage Persistence**: Transactions and preferences saved locally
-- **Empty States**: Helpful messages when no data is available
-- **Smooth Transitions**: Animated interactions throughout the interface
-- **Mobile-First**: Responsive design that works on all screen sizes
+### 🎨 Modern UI/UX
+- **Component Library**: Reusable components with consistent design system
+- **Loading States**: Skeleton loaders and loading spinners for better UX
+- **Empty States**: Helpful messages and actions when no data is available
+- **Hover Effects**: Interactive feedback throughout the interface
+- **Mobile-First**: Touch-optimized responsive design
 
 ## 🛠 Tech Stack
 
-- **Frontend Framework**: Next.js 15 with App Router
-- **UI Library**: React 18 with TypeScript
-- **Styling**: Tailwind CSS with dark mode support
-- **Charts**: Recharts for data visualization
-- **State Management**: Zustand with persistence middleware
-- **Icons**: Lucide React
-- **Build Tool**: Next.js built-in bundler
+### Frontend
+- **Framework**: Next.js 16.2.2 with App Router and Turbopack
+- **UI Library**: React 18 with TypeScript for type safety
+- **Styling**: Tailwind CSS 3.x with custom dark mode configuration
+- **Charts**: Recharts for interactive data visualization
+- **Icons**: Lucide React for consistent iconography
 
-## 📁 Project Structure
+### State Management
+- **Store**: Zustand with persistence middleware for data management
+- **Theme Management**: Custom React hook with localStorage integration
+- **Type Safety**: Comprehensive TypeScript definitions throughout
+
+### Development Tools
+- **Build Tool**: Next.js built-in bundler with Turbopack
+- **Linting**: ESLint with Next.js configuration
+- **Styling**: PostCSS with Tailwind CSS processing
+
+## 📁 Project Architecture
 
 ```
-finance-dashboard/
+finance-dashboard-ui/
 ├── src/
 │   ├── app/
-│   │   ├── layout.tsx          # Root layout with metadata
-│   │   ├── page.tsx            # Main dashboard page
-│   │   └── globals.css         # Global styles
+│   │   ├── layout.tsx              # Root layout with theme script
+│   │   ├── page.tsx                # Main dashboard page
+│   │   ├── globals.css             # Global styles and Tailwind imports
+│   │   └── favicon.ico             # Application favicon
 │   ├── components/
 │   │   ├── charts/
-│   │   │   ├── BalanceTrendChart.tsx    # Line chart component
-│   │   │   └── CategoryPieChart.tsx     # Pie chart component
-│   │   ├── Navbar.tsx          # Navigation with role switcher
-│   │   ├── SummaryCard.tsx     # Reusable summary card
-│   │   ├── TransactionTable.tsx # Transaction management
-│   │   └── InsightsSection.tsx # Financial analytics
+│   │   │   ├── BalanceTrendChart.tsx    # Interactive line chart
+│   │   │   └── CategoryPieChart.tsx     # Interactive pie chart
+│   │   ├── Navbar.tsx              # Navigation with theme toggle & role switcher
+│   │   ├── SummaryCard.tsx         # Reusable summary card with dark mode
+│   │   ├── TransactionTable.tsx    # Full-featured transaction management
+│   │   ├── InsightsSection.tsx     # Financial analytics dashboard
+│   │   ├── ThemeScript.tsx         # Immediate theme application script
+│   │   ├── ClientOnly.tsx          # Hydration-safe client wrapper
+│   │   ├── LoadingSpinner.tsx      # Reusable loading component
+│   │   └── EmptyState.tsx          # Empty state component
+│   ├── hooks/
+│   │   └── useTheme.ts             # Custom theme management hook
 │   ├── store/
-│   │   └── useFinanceStore.ts  # Zustand store with persistence
+│   │   └── useFinanceStore.ts      # Zustand store with persistence
 │   ├── data/
-│   │   └── mockData.ts         # Sample transaction data
-│   └── types/
-│       └── index.ts            # TypeScript type definitions
-├── public/                     # Static assets
-├── tailwind.config.ts          # Tailwind configuration
-├── package.json               # Dependencies and scripts
-└── README.md                  # Project documentation
+│   │   └── mockData.ts             # Sample transaction data
+│   ├── types/
+│   │   └── index.ts                # TypeScript type definitions
+│   └── utils/
+│       └── formatters.ts           # Utility functions for data formatting
+├── public/                         # Static assets and SVG icons
+├── tailwind.config.ts              # Tailwind with dark mode configuration
+├── next.config.ts                  # Next.js configuration
+├── tsconfig.json                   # TypeScript configuration
+├── package.json                    # Dependencies and scripts
+└── README.md                       # Project documentation
 ```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
-- npm, yarn, or pnpm
+- **Node.js**: Version 18.0 or higher
+- **Package Manager**: npm, yarn, or pnpm
+- **Browser**: Modern browser with JavaScript enabled
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd finance-dashboard
+   git clone https://github.com/akshaybellagi/Finance-Dashboard-UI.git
+   cd Finance-Dashboard-UI
    ```
 
 2. **Install dependencies**
@@ -115,105 +141,215 @@ finance-dashboard/
 ### Build for Production
 
 ```bash
+# Build the application
 npm run build
+
+# Start production server
 npm start
+
+# Or build and export static files
+npm run build
 ```
 
-## 🎭 Role Simulation
+## 🌙 Theme System
 
-The application includes a role-based access control system:
+### Dark Mode Implementation
+The application features a comprehensive dark mode system:
+
+#### Theme Toggle
+- **Location**: Moon/Sun icon in the top navigation bar
+- **Behavior**: Click to instantly switch between light and dark themes
+- **Visual Feedback**: Icon changes and smooth color transitions
+
+#### Theme Persistence
+- **localStorage**: Theme preference saved automatically
+- **System Detection**: Respects OS dark/light mode preference on first visit
+- **Hydration Safe**: No flash of incorrect theme using server-side script
+
+#### Component Support
+All components include dark mode variants:
+- **Navigation**: Dark background with light text
+- **Cards**: Dark backgrounds with appropriate contrast
+- **Tables**: Dark rows with hover effects
+- **Charts**: Dark-themed color schemes
+- **Forms**: Dark inputs and buttons
+- **Modals**: Dark overlays and content areas
+
+## 🎭 Role-Based Features
 
 ### Viewer Role (Default)
-- **Read-only access** to all dashboard features
-- Can view transactions, charts, and insights
-- Cannot add, edit, or delete transactions
-- Perfect for stakeholders who need visibility without modification rights
+- ✅ **View Dashboard**: Access to all summary cards and charts
+- ✅ **Browse Transactions**: Read-only access to transaction table
+- ✅ **Use Filters**: Search and filter transactions
+- ✅ **Export Data**: Download transaction data as CSV
+- ❌ **Modify Data**: Cannot add, edit, or delete transactions
 
 ### Admin Role
-- **Full access** to all features
-- Can add new transactions through the modal form
-- Can edit existing transactions inline
-- Can delete transactions with confirmation
-- Ideal for account owners and financial managers
+- ✅ **All Viewer Permissions**: Complete read access
+- ✅ **Add Transactions**: Create new transactions via modal form
+- ✅ **Edit Transactions**: Modify existing transaction details
+- ✅ **Delete Transactions**: Remove transactions with confirmation
+- ✅ **Bulk Operations**: Manage multiple transactions
 
-**Role Switching**: Use the dropdown in the navigation bar to switch between roles and see how the interface adapts.
+**Role Switching**: Use the user dropdown in the navigation bar to switch between roles and experience different permission levels.
 
-## 💾 Data Persistence
+## 💾 Data Management
 
-- **LocalStorage Integration**: All transactions and user preferences are automatically saved to browser storage
-- **Automatic Loading**: Data persists across browser sessions and page refreshes
-- **Mock Data**: Comes pre-loaded with sample transactions for immediate testing
-- **Export Ready**: Structure designed for easy CSV export implementation
+### Persistence Strategy
+- **Zustand Store**: Centralized state management with automatic persistence
+- **localStorage**: All data saved locally in browser storage
+- **Automatic Sync**: Changes immediately reflected across all components
+- **Type Safety**: Full TypeScript support for all data operations
+
+### Sample Data
+The application comes pre-loaded with realistic sample data:
+- **20+ Transactions**: Mix of income and expenses across various categories
+- **Multiple Categories**: Salary, rent, groceries, entertainment, utilities, etc.
+- **Date Range**: Transactions spanning several months for trend analysis
+- **Realistic Amounts**: Varied transaction amounts for meaningful analytics
+
+### Data Structure
+```typescript
+interface Transaction {
+  id: number;
+  date: string;
+  amount: number;
+  category: string;
+  type: 'income' | 'expense';
+  description?: string;
+}
+
+interface User {
+  role: 'viewer' | 'admin';
+}
+```
 
 ## 📱 Responsive Design
 
-### Desktop (1024px+)
-- 4-column summary card layout
-- Side-by-side chart arrangement
-- Full-width transaction table with all columns visible
+### Breakpoint Strategy
+- **Mobile First**: Base styles optimized for mobile devices
+- **Progressive Enhancement**: Additional features for larger screens
+- **Flexible Grid**: CSS Grid and Flexbox for adaptive layouts
 
-### Tablet (768px - 1023px)
-- 2-column summary card layout
+### Screen Sizes
+#### Mobile (< 768px)
+- Single-column layout for summary cards
 - Stacked chart arrangement
-- Condensed transaction table
+- Collapsible transaction filters
+- Touch-optimized buttons and interactions
+- Horizontal scroll for wide tables
 
-### Mobile (< 768px)
-- Single-column layout throughout
-- Collapsible filters and search
-- Touch-optimized interactions
-- Horizontal scroll for transaction table
+#### Tablet (768px - 1023px)
+- 2-column summary card grid
+- Side-by-side chart layout
+- Condensed transaction table
+- Optimized for touch and mouse input
+
+#### Desktop (1024px+)
+- 4-column summary card layout
+- Full-width chart arrangements
+- Complete transaction table with all columns
+- Hover effects and detailed interactions
 
 ## 🎨 Design System
 
 ### Color Palette
-- **Primary**: Blue tones for actions and highlights
-- **Success**: Green for income and positive trends
-- **Warning**: Orange for neutral states
-- **Danger**: Red for expenses and negative trends
-- **Neutral**: Gray scale for text and backgrounds
+#### Light Mode
+- **Primary**: Blue (#3B82F6) for actions and highlights
+- **Success**: Green (#10B981) for income and positive trends
+- **Warning**: Orange (#F59E0B) for neutral states
+- **Danger**: Red (#EF4444) for expenses and negative trends
+- **Background**: Light gray (#F9FAFB) for page backgrounds
+- **Surface**: White (#FFFFFF) for card backgrounds
+
+#### Dark Mode
+- **Primary**: Light blue (#60A5FA) for actions and highlights
+- **Success**: Light green (#34D399) for income and positive trends
+- **Warning**: Light orange (#FBBF24) for neutral states
+- **Danger**: Light red (#F87171) for expenses and negative trends
+- **Background**: Dark gray (#111827) for page backgrounds
+- **Surface**: Dark gray (#1F2937) for card backgrounds
 
 ### Typography
-- **Font**: Inter for clean, modern readability
-- **Hierarchy**: Consistent sizing from headings to body text
-- **Weight**: Strategic use of font weights for emphasis
+- **Font Family**: Inter for optimal readability across all devices
+- **Font Weights**: 400 (normal), 500 (medium), 600 (semibold), 700 (bold)
+- **Scale**: Consistent sizing from 12px (xs) to 36px (3xl)
+- **Line Height**: Optimized for readability and visual hierarchy
 
-### Components
-- **Cards**: Rounded corners with subtle shadows
-- **Buttons**: Consistent padding and hover states
-- **Forms**: Clean inputs with proper validation states
-- **Tables**: Zebra striping and hover effects
+### Component Patterns
+- **Cards**: Rounded corners (12px) with subtle shadows and borders
+- **Buttons**: Consistent padding, hover states, and focus indicators
+- **Forms**: Clean inputs with validation states and error messages
+- **Tables**: Alternating row colors, hover effects, and proper spacing
+- **Modals**: Backdrop blur with centered content and escape handling
 
 ## 🔮 Future Enhancements
 
 ### Planned Features
-- **CSV Export**: Download transaction data as spreadsheet
-- **Budget Tracking**: Set and monitor spending limits by category
-- **Recurring Transactions**: Automate regular income and expenses
-- **Multi-Currency**: Support for different currencies with conversion
-- **Advanced Analytics**: Trend predictions and spending forecasts
-- **Data Import**: Upload transactions from bank statements
-- **Notifications**: Alerts for budget limits and unusual spending
+- **🔐 Authentication**: User accounts with secure login and registration
+- **☁️ Cloud Sync**: Real-time data synchronization across devices
+- **📊 Advanced Analytics**: Trend predictions, spending forecasts, and budget insights
+- **💰 Budget Management**: Set spending limits and track budget performance
+- **🔄 Recurring Transactions**: Automate regular income and expense entries
+- **🌍 Multi-Currency**: Support for different currencies with real-time conversion
+- **📱 PWA Support**: Progressive Web App with offline functionality
+- **🔔 Notifications**: Smart alerts for budget limits and spending patterns
 
 ### Technical Improvements
-- **Backend Integration**: Connect to real financial APIs
-- **Authentication**: User accounts with secure login
-- **Real-time Sync**: Multi-device synchronization
-- **Performance**: Virtual scrolling for large datasets
-- **Testing**: Comprehensive unit and integration tests
-- **Accessibility**: Enhanced screen reader support and keyboard navigation
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
+- **🧪 Testing Suite**: Comprehensive unit, integration, and E2E tests
+- **♿ Accessibility**: Enhanced WCAG compliance and screen reader support
+- **⚡ Performance**: Virtual scrolling, code splitting, and optimization
+- **🔍 Search**: Advanced search with filters and saved searches
+- **📤 Data Import**: Upload transactions from bank statements and CSV files
+- **🎯 Analytics**: Advanced reporting with custom date ranges and comparisons
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+We welcome contributions! Here's how you can help:
 
-## 📞 Support
+### Getting Started
+1. **Fork the repository** on GitHub
+2. **Clone your fork** locally
+3. **Create a feature branch** (`git checkout -b feature/amazing-feature`)
+4. **Make your changes** with proper commit messages
+5. **Push to your branch** (`git push origin feature/amazing-feature`)
+6. **Open a Pull Request** with a clear description
 
-If you have any questions or run into issues, please open an issue on the GitHub repository.
+### Development Guidelines
+- **Code Style**: Follow the existing TypeScript and React patterns
+- **Components**: Create reusable components with proper TypeScript types
+- **Styling**: Use Tailwind CSS classes and maintain dark mode support
+- **Testing**: Add tests for new features and bug fixes
+- **Documentation**: Update README and add inline code comments
+
+### Areas for Contribution
+- 🐛 **Bug Fixes**: Report and fix issues
+- ✨ **New Features**: Implement planned enhancements
+- 🎨 **UI/UX**: Improve design and user experience
+- 📚 **Documentation**: Enhance guides and examples
+- 🧪 **Testing**: Add test coverage
+- ♿ **Accessibility**: Improve accessibility features
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **Next.js Team** for the amazing React framework
+- **Tailwind CSS** for the utility-first CSS framework
+- **Recharts** for beautiful and responsive charts
+- **Lucide** for the comprehensive icon library
+- **Zustand** for simple and effective state management
+
+## 📞 Support & Contact
+
+- **GitHub Issues**: [Report bugs or request features](https://github.com/akshaybellagi/Finance-Dashboard-UI/issues)
+- **Discussions**: [Join community discussions](https://github.com/akshaybellagi/Finance-Dashboard-UI/discussions)
+- **Email**: For private inquiries and support
 
 ---
 
-**Built with ❤️ using Next.js, React, and Tailwind CSS**
+**🚀 Built with modern web technologies and best practices**
+
+*Last updated: April 2026*
