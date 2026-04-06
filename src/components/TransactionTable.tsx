@@ -93,25 +93,25 @@ export default function TransactionTable() {
 
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 w-full max-w-md">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        <div className="bg-white rounded-xl p-6 w-full max-w-md">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">
             {transaction ? 'Edit Transaction' : 'Add Transaction'}
           </h3>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
                 Date
               </label>
               <input
                 type="date"
                 value={formData.date}
                 onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                className="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 bg-white text-gray-900"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
                 Amount
               </label>
               <input
@@ -119,18 +119,18 @@ export default function TransactionTable() {
                 step="0.01"
                 value={formData.amount}
                 onChange={(e) => setFormData({ ...formData, amount: parseFloat(e.target.value) })}
-                className="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 bg-white text-gray-900"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
                 Category
               </label>
               <select
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                className="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 bg-white text-gray-900"
               >
                 {categories.map((category) => (
                   <option key={category} value={category}>
@@ -140,41 +140,41 @@ export default function TransactionTable() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
                 Type
               </label>
               <select
                 value={formData.type}
                 onChange={(e) => setFormData({ ...formData, type: e.target.value as 'income' | 'expense' })}
-                className="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 bg-white text-gray-900"
               >
                 <option value="expense">Expense</option>
                 <option value="income">Income</option>
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
                 Description
               </label>
               <input
                 type="text"
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                className="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 bg-white text-gray-900"
                 placeholder="Optional description"
               />
             </div>
             <div className="flex space-x-3 pt-4">
               <button
                 type="submit"
-                className="flex-1 bg-blue-600 dark:bg-blue-700 text-white rounded-md px-4 py-2 hover:bg-blue-700 dark:hover:bg-blue-800 transition-colors"
+                className="flex-1 bg-blue-600 text-white rounded-md px-4 py-2 hover:bg-blue-700 transition-colors"
               >
                 {transaction ? 'Update' : 'Add'} Transaction
               </button>
               <button
                 type="button"
                 onClick={onCancel}
-                className="flex-1 bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-md px-4 py-2 hover:bg-gray-400 dark:hover:bg-gray-500 transition-colors"
+                className="flex-1 bg-gray-300 text-gray-700 rounded-md px-4 py-2 hover:bg-gray-400 transition-colors"
               >
                 Cancel
               </button>
@@ -185,9 +185,9 @@ export default function TransactionTable() {
     );
   };
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 transition-colors">
+    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 sm:mb-0">
+        <h3 className="text-lg font-semibold text-gray-900 mb-4 sm:mb-0">
           Transactions
         </h3>
         <div className="flex space-x-2">
@@ -213,20 +213,20 @@ export default function TransactionTable() {
       {/* Filters */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 h-4 w-4" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
           <input
             type="text"
             placeholder="Search transactions..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md bg-white text-gray-900"
           />
         </div>
         
         <select
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900"
         >
           <option value="">All Categories</option>
           {categories.map((category) => (
@@ -239,7 +239,7 @@ export default function TransactionTable() {
         <select
           value={typeFilter}
           onChange={(e) => setTypeFilter(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900"
         >
           <option value="">All Types</option>
           <option value="income">Income</option>
@@ -249,14 +249,14 @@ export default function TransactionTable() {
         <div className="flex space-x-2">
           <button
             onClick={() => handleSort('date')}
-            className="flex items-center space-x-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+            className="flex items-center space-x-1 px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-700 hover:bg-gray-50"
           >
             <span>Date</span>
             <ArrowUpDown className="h-4 w-4" />
           </button>
           <button
             onClick={() => handleSort('amount')}
-            className="flex items-center space-x-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+            className="flex items-center space-x-1 px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-700 hover:bg-gray-50"
           >
             <span>Amount</span>
             <ArrowUpDown className="h-4 w-4" />
@@ -266,50 +266,50 @@ export default function TransactionTable() {
       {/* Table */}
       <div className="overflow-x-auto">
         {filteredAndSortedTransactions.length === 0 ? (
-          <div className="text-center py-8 text-gray-500 dark:text-gray-400">
+          <div className="text-center py-8 text-gray-500">
             No transactions found
           </div>
         ) : (
           <table className="w-full">
             <thead>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-gray-100">Date</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-gray-100">Description</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-gray-100">Category</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-900 dark:text-gray-100">Type</th>
-                <th className="text-right py-3 px-4 font-medium text-gray-900 dark:text-gray-100">Amount</th>
+              <tr className="border-b border-gray-200">
+                <th className="text-left py-3 px-4 font-medium text-gray-900">Date</th>
+                <th className="text-left py-3 px-4 font-medium text-gray-900">Description</th>
+                <th className="text-left py-3 px-4 font-medium text-gray-900">Category</th>
+                <th className="text-left py-3 px-4 font-medium text-gray-900">Type</th>
+                <th className="text-right py-3 px-4 font-medium text-gray-900">Amount</th>
                 {user.role === 'admin' && (
-                  <th className="text-right py-3 px-4 font-medium text-gray-900 dark:text-gray-100">Actions</th>
+                  <th className="text-right py-3 px-4 font-medium text-gray-900">Actions</th>
                 )}
               </tr>
             </thead>
             <tbody>
               {filteredAndSortedTransactions.map((transaction) => (
-                <tr key={transaction.id} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
-                  <td className="py-3 px-4 text-gray-900 dark:text-gray-100">
+                <tr key={transaction.id} className="border-b border-gray-100 hover:bg-gray-50">
+                  <td className="py-3 px-4 text-gray-900">
                     {formatDate(transaction.date)}
                   </td>
-                  <td className="py-3 px-4 text-gray-900 dark:text-gray-100">
+                  <td className="py-3 px-4 text-gray-900">
                     {transaction.description || '-'}
                   </td>
                   <td className="py-3 px-4">
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200">
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
                       {transaction.category}
                     </span>
                   </td>
                   <td className="py-3 px-4">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                       transaction.type === 'income'
-                        ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300'
-                        : 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300'
+                        ? 'bg-green-100 text-green-800'
+                        : 'bg-red-100 text-red-800'
                     }`}>
                       {transaction.type}
                     </span>
                   </td>
                   <td className={`py-3 px-4 text-right font-medium ${
                     transaction.type === 'income'
-                      ? 'text-green-600 dark:text-green-400'
-                      : 'text-red-600 dark:text-red-400'
+                      ? 'text-green-600'
+                      : 'text-red-600'
                   }`}>
                     {transaction.type === 'income' ? '+' : '-'}{formatCurrency(transaction.amount)}
                   </td>
@@ -318,13 +318,13 @@ export default function TransactionTable() {
                       <div className="flex items-center justify-end space-x-2">
                         <button
                           onClick={() => setEditingTransaction(transaction)}
-                          className="p-1 text-gray-400 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                          className="p-1 text-gray-400 hover:text-blue-600"
                         >
                           <Edit2 className="h-4 w-4" />
                         </button>
                         <button
                           onClick={() => deleteTransaction(transaction.id)}
-                          className="p-1 text-gray-400 dark:text-gray-500 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+                          className="p-1 text-gray-400 hover:text-red-600"
                         >
                           <Trash2 className="h-4 w-4" />
                         </button>
